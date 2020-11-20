@@ -1,0 +1,97 @@
+<div class="container form-container">
+
+    <div class="col-md-8 order-md-1 ">
+
+        <h4 class="mb-3">Create a quiz</h4>
+        <form class="needs-validation" novalidate>
+            <div class="row">
+
+                <div class="col-md-6 mb-3 ">
+                    <label for="firstName">Title</label>
+                    <input name="title" type="text" class="form-control" id="firstName" placeholder="" value="" required [(ngModel)]="title">
+                    <div class="invalid-feedback">
+                        Valid text is required.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">Text</label>
+                    <input name="text" type="text" class="form-control" id="lastName" placeholder="" value="" required [(ngModel)]="text">
+                    <div class="invalid-feedback">
+                        Valid text is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">Option 1</label>
+                    <input name="opt1" type="text" class="form-control" id="lastName" placeholder="" value="" required [(ngModel)]="opt1">
+                    <div class="invalid-feedback">
+                        Valid text is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">Option 2</label>
+                    <input name="opt2" type="text" class="form-control" id="lastName" placeholder="" value="" required [(ngModel)]="opt2">
+                    <div class="invalid-feedback">
+                        Valid text is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">Option 3</label>
+                    <input name="opt3" type="text" class="form-control" id="lastName" placeholder="" value="" required [(ngModel)]="opt3">
+                    <div class="invalid-feedback">
+                        Valid text is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">Option 4</label>
+                    <input name="opt4" type="text" class="form-control" id="lastName" placeholder="" value="" required [(ngModel)]="opt4">
+                    <div class="invalid-feedback">
+                        Valid text is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+
+                    <input type="checkbox" id="option1" name="option1" value="0" [(ngModel)]="ans1">
+                    <label for="option1"> Option 1 </label><br>
+                    <input type="checkbox" id="option2" name="option2" value="1" [(ngModel)]="ans2">
+                    <label for="option2"> Option 2</label><br>
+                    <input type="checkbox" id="option3" name="option3" value="2" [(ngModel)]="ans3">
+                    <label for="option3"> Option 3</label><br>
+                    <input type="checkbox" id="option4" name="option4" value="3" [(ngModel)]="ans4">
+                    <label for="option4"> Option 4 </label>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+
+                    <div class="form-group">
+                        <button (click)=createQuiz() type="submit" class="btn btn-primary btn-block">Create Quiz</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>

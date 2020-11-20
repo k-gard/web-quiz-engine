@@ -8,6 +8,9 @@ import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorComponent } from './error/error.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { CreateQuizComponent } from './create-quiz/create-quiz.component';
+import { SolvequizComponent } from './solvequiz/solvequiz.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { ErrorComponent } from './error/error.component';
     MenuComponent,
     LoginComponent,
     RegisterComponent,
-    ErrorComponent
+    ErrorComponent,
+    WelcomeComponent,
+    CreateQuizComponent,
+    SolvequizComponent
   ],
   imports: [
     BrowserModule,
