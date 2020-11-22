@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../models/quiz';
-
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
