@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../models/quiz';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class CreateQuizComponent implements OnInit {
 
   ans = new Array();
 
-  constructor() { }
+  constructor(private httpclient: HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -40,7 +41,19 @@ export class CreateQuizComponent implements OnInit {
     if ( this.ans4 === true){this.ans.push(3); }
     const quiz = new Quiz( this.title, this.text, opt, this.ans);
     console.log(quiz);
-    quiz.id = 5 ;
+    const postQuiz = {
+      "title" : quiz.title,
+      "text"  : quiz.text,
+      "options": quiz.options,
+      "answer" : quiz.answer,
+    }
+    // {
+    //   "title": "Coffee drinks",
+    //   "text": "Select only coffee drinks.",
+    //   "options": ["Americano","Tea","Cappuccino","Sprite"],
+    //   "answer": [0,2]
+    // }
+     this.httpclient.post('https://web-quiz-engine.herokuapp.com/api/quizzes',postQuiz);
   }
 
 }

@@ -12,6 +12,7 @@ import { ErrorComponent } from './error/error.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { CreateQuizComponent } from './create-quiz/create-quiz.component';
 import { SolvequizComponent } from './solvequiz/solvequiz.component';
+import { HttpClientModule } from '@angular/common/http';
 
 // const routes: Routes = [
 //   { path: 'login-component', component: LoginComponent },
@@ -34,7 +35,7 @@ import { SolvequizComponent } from './solvequiz/solvequiz.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

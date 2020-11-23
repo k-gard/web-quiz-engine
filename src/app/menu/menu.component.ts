@@ -17,5 +17,9 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.route.snapshot.params.name;
   }
+
+  Logout(): void {
+    sessionStorage.removeItem("authenticatedUser");
+  }
 }
 
