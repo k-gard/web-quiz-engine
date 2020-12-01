@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../models/quiz';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataService } from '../service/data.service';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class CreateQuizComponent implements OnInit {
 
   ans = new Array();
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private dataservice: DataService) { }
 
   ngOnInit(): void {
   }
@@ -53,7 +54,10 @@ export class CreateQuizComponent implements OnInit {
     //   "options": ["Americano","Tea","Cappuccino","Sprite"],
     //   "answer": [0,2]
     // }
-     this.httpclient.post('https://web-quiz-engine.herokuapp.com/api/quizzes',postQuiz);
+
+    // this.dataservice.createquiz(postQuiz,"test@gmail.com",);
+
+
   }
 
 }

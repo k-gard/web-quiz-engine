@@ -17,7 +17,7 @@ const routes: Routes = [
    {path: 'createquiz' , component: CreateQuizComponent,canActivate:[RouteGuardService]},
    {path: 'solvequiz' , component: SolvequizComponent,canActivate:[RouteGuardService]},
    {path: 'logout' , component: LogoutComponent},
-   { path: '**', component: ErrorComponent }
+   { path: '**', component: ErrorComponent,canActivate:[RouteGuardService] }
 ];
 
 @NgModule({
