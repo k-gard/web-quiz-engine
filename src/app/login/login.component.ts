@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleLogin(): void {
-    if (this.hardcodedauthenticationService.authenticate(this.username, this.password)){
+  handleLogin_(): void {
+    if (this.hardcodedauthenticationService.authenticate2(this.username, this.password)){
       this.router.navigate(['welcome', this.username]);
       this.invalidLogin = false;
 
@@ -29,6 +29,10 @@ export class LoginComponent implements OnInit {
     {
       this.invalidLogin = true;
     }
+  }
+
+  handleLogin(): void {
+    this.hardcodedauthenticationService.authenticate2(this.username, this.password);
   }
 
 
