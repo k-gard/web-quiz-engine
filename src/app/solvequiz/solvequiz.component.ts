@@ -1,4 +1,6 @@
+import { DataService } from './../service/data.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-solvequiz',
@@ -6,15 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./solvequiz.component.css']
 })
 export class SolvequizComponent implements OnInit {
-
-  options = ['MySQL is a database management system.','MySQL databases are relational.','MySQL software is Open Source.','The MySQL Database Server is fast, reliable, scalable, and easy to use.']
-
-  constructor() { }
+  title = '';
+  question = '';
+  options = [];
+  id = 0;
+  success = false;
+  answered = false;
+  feedback = '';
+  constructor(private route: ActivatedRoute , private dataservice: DataService) { }
   ans1 = false;
   ans2 = false;
   ans3 = false;
   ans4 = false;
   ngOnInit(): void {
+   this.id = this.route.snapshot.params.id;
+   this.dataservice.getQuizzById(this.id).subscribe(
+    response => {console.log(response);
+
+                 this.options = response.options;
+                 console.log(this.options[0]);
+                 this.question = response.text;
+                 this.title = response.title;}
+   );
   }
   answerQuiz(): void{
    const answer = [];
@@ -23,5 +38,10 @@ export class SolvequizComponent implements OnInit {
    if (this.ans3 === true){answer.push(2); }
    if (this.ans4 === true){answer.push(3); }
    console.log(answer);
-  }
+   this.answered = true;
+   this.dataservice.solveQuiz(this.id, answer).subscribe(response => {console.log(response);
+                                                                      this.success = response.success;
+                                                                      this.feedback = response.feedback;
+   });
+}
 }

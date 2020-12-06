@@ -13,7 +13,7 @@
                 <input name="verify-password" type="password" class="form-control" placeholder="Password" required="required" [(ngModel)]="verifyPassword">
             </div>
             <div class="alert alert-danger" *ngIf="passwordsMatch === false">{{passwordDontMatchError}}</div>
-
+            <div class="alert alert-danger" *ngIf="InputError === true">{{error}}</div>
             <div class="form-group">
                 <button (click)=registerHandler() type="submit" class="btn btn-primary btn-block">Create Account</button>
             </div>

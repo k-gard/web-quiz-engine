@@ -1,3 +1,10 @@
-export const API_URL = "http://localhost:8889/"
-export const API_REGISTER_USER = 'api/register'
-export const API_CREATE_QUIZ = 'api/quizzes'
+export const API_URL = 'http://localhost:8889/';
+export const API_REGISTER_USER = 'api/register';
+export const API_CREATE_QUIZ = 'api/quizzes';
+export const API_GET_QUIZZES_PAGE = 'api/quizzes?page=';
+export const API_USER_QUIZZES_PAGE = 'api/myQuizzes?page=';
+export const API_QUIZ_BY_ID = 'api/quizzes/';
+export const API_ALL_QUIZZES = 'api/allQuizzes';
+export const API_LOGIN = 'api/login';
+export const TOKEN = 'token';
+export const AUTHENTICATED_USER = 'authenticatedUser';

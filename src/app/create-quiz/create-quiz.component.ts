@@ -12,7 +12,8 @@ import { DataService } from '../service/data.service';
 })
 export class CreateQuizComponent implements OnInit {
 
-
+  QuizCreated = 'Quiz created';
+  created = false;
   title = '';
   text = '';
   opt1 = '';
@@ -41,21 +42,31 @@ export class CreateQuizComponent implements OnInit {
     if ( this.ans3 === true){this.ans.push(2); }
     if ( this.ans4 === true){this.ans.push(3); }
     const quiz = new Quiz( this.title, this.text, opt, this.ans);
-    console.log(quiz);
-    const postQuiz = {
-      "title" : quiz.title,
-      "text"  : quiz.text,
-      "options": quiz.options,
-      "answer" : quiz.answer,
-    }
-    // {
-    //   "title": "Coffee drinks",
-    //   "text": "Select only coffee drinks.",
-    //   "options": ["Americano","Tea","Cappuccino","Sprite"],
-    //   "answer": [0,2]
-    // }
 
-    // this.dataservice.createquiz(postQuiz,"test@gmail.com",);
+    const postQuiz = {
+      title : quiz.title,
+      text  : quiz.text,
+      options : quiz.options,
+      answer : quiz.answer,
+    };
+
+
+
+    this.dataservice.createquiz( postQuiz).subscribe(
+      (response: Response) => {console.log(response),
+                               this.created = true,
+                               this.title = '';
+                               this.text = '';
+                               this.opt1 = '';
+                               this.opt2 = '';
+                               this.opt3 = '';
+                               this.opt4 = '';
+                               this.ans1 = false;
+                               this.ans2 = false;
+                               this.ans3 = false;
+                               this.ans4 = false; },
+      (error: Error) => {console.log(error.message); }
+      );
 
 
   }
