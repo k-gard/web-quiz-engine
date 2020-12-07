@@ -9,6 +9,7 @@ import {RegisterComponent} from './register/register.component';
 import { CreateQuizComponent } from './create-quiz/create-quiz.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RouteGuardService } from './service/route-guard.service';
+import { MyquizzesComponent } from './myquizzes/myquizzes.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -16,7 +17,7 @@ const routes: Routes = [
    { path: 'register', component: RegisterComponent },
    {path: 'welcome/:name' , component: WelcomeComponent, canActivate: [RouteGuardService]},
    {path: 'quizzes' , component: ViewquizzesComponent, canActivate: [RouteGuardService]},
-   {path: 'myquizzes' , component: ViewquizzesComponent, canActivate: [RouteGuardService]},
+   {path: 'myquizzes' , component: MyquizzesComponent, canActivate: [RouteGuardService]},
    {path: 'solve/:id' , component: SolvequizComponent, canActivate: [RouteGuardService]},
    {path: 'createquiz' , component: CreateQuizComponent, canActivate: [RouteGuardService]},
    {path: 'solvequiz' , component: SolvequizComponent, canActivate: [RouteGuardService]},

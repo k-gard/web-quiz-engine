@@ -17,6 +17,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './service/http-interceptor-BasicAuth.service';
 import { ViewquizzesComponent } from './viewquizzes/viewquizzes.component';
 import { FooterComponent } from './footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SolvedquizzesComponent } from './solvedquizzes/solvedquizzes.component';
+import { MyquizzesComponent } from './myquizzes/myquizzes.component';
 
 // const routes: Routes = [
 //   { path: 'login-component', component: LoginComponent },
@@ -36,6 +39,8 @@ import { FooterComponent } from './footer/footer.component';
     LogoutComponent,
     ViewquizzesComponent,
     FooterComponent,
+    SolvedquizzesComponent,
+    MyquizzesComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,7 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     HttpClientModule,
     MatTableModule,
+    BrowserAnimationsModule,
   ],
 
   providers: [

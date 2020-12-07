@@ -8,11 +8,11 @@ import { HttpResponse } from '@angular/common/http';
 
 
 @Component({
-  selector: 'app-viewquizzes',
-  templateUrl: './viewquizzes.component.html',
-  styleUrls: ['./viewquizzes.component.css']
+  selector: 'app-myquizzes',
+  templateUrl: './myquizzes.component.html',
+  styleUrls: ['./myquizzes.component.css']
 })
-export class ViewquizzesComponent implements OnInit {
+export class MyquizzesComponent implements OnInit {
 
   constructor(private dataservice: DataService , private router: Router) { }
 
@@ -28,24 +28,12 @@ export class ViewquizzesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    if (this.router.url.includes('myquizzes')){
-    this.myquizzes = true;
+
+
     this.getUserQuizzes(0);
-    }else{
-    this.getQuizzesPage(0);
-    this.myquizzes = false;
-    }
 
   }
-  getQuizzesPage(pageNumber: number): void{
-    this.dataservice.getQuizzesPageNumber(pageNumber).subscribe(
-      (response: any) => { this.list = response.content;
-                           console.log(this.list);
-                           this.totalPages = response.totalPages;
-                           this.pages = Array(this.totalPages).fill(null).map((x, i) => i);
-                          }
-    );
-  }
+
 
 
   getUserQuizzes(pageNumber: number): void{
@@ -53,7 +41,9 @@ export class ViewquizzesComponent implements OnInit {
       (response: any) => { this.list = response.content;
                            console.log(this.list);
                            this.totalPages = response.totalPages;
+
                            this.pages = Array(this.totalPages).fill(null).map((x, i) => i);
+                           console.log(this.pages);
                           }
     );
 

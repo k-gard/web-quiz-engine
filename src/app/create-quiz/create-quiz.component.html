@@ -1,91 +1,110 @@
 <app-menu></app-menu>
-<div class="container.-fluid">
-    <div class="row align-items-center justify-content-center">
-        <div class=" container form-container">
-            <div class="row  justify-content-center align-items-center">
-                <div class=" ">
+<div>
+
                     <div class="alert alert-success my-4" *ngIf="created">{{QuizCreated}}</div>
-                    <h4 class="">Create a quiz</h4>
-                    <form class="needs-validation" novalidate>
-                        <div class="row">
 
-                            <div class=" ">
-                                <label for="firstName">Title</label>
-                                <input name="title" type="text" class="form-control" id="firstName" placeholder="" value="" required [(ngModel)]="title">
-                                <div class="invalid-feedback">
-                                    Valid text is required.
-                                </div>
-                            </div>
+                    <div class="container text-center  my-4">
+                    <h4>Create a quiz</h4>
+                  </div>
+    <div class="container">
+
+
+
+
+              <div class="col-8 mx-auto">
+
+                    <form class="col-12">
+                        <div class="form-row my-3">
+
+
+                                <label class="col-sm-2 col-form-label" for="title">Title :</label>
+                                <input name="title" type="text" class="form-control col-sm-10" id="title" placeholder="Quiz title" value="" required [(ngModel)]="title">
 
                         </div>
 
 
-                        <div class="row ">
-                            <div class="">
-                                <label for="lastName">Text</label>
-                                <input name="text" type="text" class="form-control" id="lastName" placeholder="" value="" required [(ngModel)]="text">
-                                <div class="invalid-feedback">
-                                    Valid text is required.
-                                </div>
-                            </div>
+
+                        <div class="form-row my-3">
+
+                                <label class="col-sm-2 col-form-label" for="text">Text :</label>
+                                <input name="text" type="text" class="form-control col-sm-10" id="text" placeholder="Quiz question" value=""  [(ngModel)]="text">
+
+
                         </div>
 
-                        <div class="row">
-                            <div class="">
-                                <label for="lastName">Option 1</label>
-                                <input name="opt1" type="text" class="form-control" id="lastName" placeholder="" value="" required [(ngModel)]="opt1">
-                                <div class="invalid-feedback">
-                                    Valid text is required.
-                                </div>
-                            </div>
+                        <div class="form-row my-3">
+
+                                <label class="col-sm-2 col-form-label" for="option1">Option 1 :</label>
+                                <input name="option1" type="text" class="form-control col-sm-10" id="option1" placeholder="Quiz option 1" value=""  [(ngModel)]="opt1">
+
+
                         </div>
 
-                        <div class="row">
-                            <div class="">
-                                <label for="lastName">Option 2</label>
-                                <input name="opt2" type="text" class="form-control" id="lastName" placeholder="" value="" required [(ngModel)]="opt2">
-                                <div class="invalid-feedback">
-                                    Valid text is required.
-                                </div>
-                            </div>
-                        </div>
+                        <div class="form-row my-3">
 
-                        <div class="row">
-                            <div class="">
-                                <label for="lastName">Option 3</label>
-                                <input name="opt3" type="text" class="form-control" id="lastName" placeholder="" value="" required [(ngModel)]="opt3">
-                                <div class="invalid-feedback">
-                                    Valid text is required.
-                                </div>
-                            </div>
-                        </div>
+                          <label class="col-sm-2 col-form-label" for="option1">Option 2 :</label>
+                          <input name="option2" type="text" class="form-control col-sm-10" id="option2" placeholder="Quiz option 2" value=""  [(ngModel)]="opt2">
 
-                        <div class="row">
-                            <div class="">
-                                <label for="lastName">Option 4</label>
-                                <input name="opt4" type="text" class="form-control" id="lastName" placeholder="" value="" required [(ngModel)]="opt4">
-                                <div class="invalid-feedback">
-                                    Valid text is required.
-                                </div>
-                            </div>
-                        </div>
+
+                         </div>
+
+                    <div class="form-row my-3">
+
+                    <label class="col-sm-2 col-form-label" for="option1">Option 3 :</label>
+                    <input name="option3" type="text" class="form-control col-sm-10" id="option3" placeholder="Quiz option 3" value="" required [(ngModel)]="opt3">
+
+
+                    </div>
+
+
+                    <div class="form-row my-3">
+
+                    <label class="col-sm-2 col-form-label" for="option1">Option 4 :</label>
+                    <input name="option4" type="text" class="form-control col-sm-10" id="option4" placeholder="Quiz option 4" value="" required [(ngModel)]="opt4">
+
+
+                    </div>
+
+
+
                         <div class="row my-1">
-                            <strong> Correct answers </strong>
+                            <strong>Mark the correct answers </strong>
                         </div>
-                        <div class="row">
-                            <div class="">
 
-                                <input type="checkbox" id="option1" name="option1" value="0" [(ngModel)]="ans1">
-                                <label for="option1 mx-3"> Option 1 </label><br>
-                                <input type="checkbox" id="option2" name="option2" value="1" [(ngModel)]="ans2">
-                                <label for="option2 mx-2"> Option 2</label><br>
-                                <input type="checkbox" id="option3" name="option3" value="2" [(ngModel)]="ans3">
-                                <label for="option3 mx-2"> Option 3</label><br>
-                                <input type="checkbox" id="option4" name="option4" value="3" [(ngModel)]="ans4">
-                                <label for="option4 mx-2"> Option 4 </label>
+                            <div class="form-row">
+
+                              <label class="col-sm-2 col-form-label" for="opt1"> Option 1 :</label>
+                              <input class="lign-middle" type="checkbox"   id="opt1" name="opt1" value="0" [(ngModel)]="ans1">
+
 
                             </div>
-                        </div>
+
+                            <div class="form-row">
+
+                              <label class="col-sm-2 col-form-label" for="opt2"> Option 2 :</label>
+                              <input type="checkbox"   id="opt2" name="opt2" value="0" [(ngModel)]="ans2">
+
+
+                            </div>
+
+                            <div class="form-row">
+
+                              <label class="col-sm-2 col-form-label" for="opt3"> Option 3 :</label>
+                              <input type="checkbox"   id="opt3" name="opt3" value="0" [(ngModel)]="ans3">
+
+
+                            </div>
+
+                            <div class="form-row">
+
+                              <label class="col-sm-2 col-form-label" for="opt4"> Option 4 :</label>
+                              <input class="my-2"type="checkbox"   id="opt4" name="opt4" value="0" [(ngModel)]="ans4">
+
+
+                            </div>
+
+
+
                         <div class="row">
                             <div class="">
 
@@ -96,10 +115,11 @@
                             </div>
                         </div>
 
+
                     </form>
 
-                </div>
+                  </div>
+                  </div>
 
-            </div>
-        </div>
-    </div>
+</div>
+

@@ -18,7 +18,7 @@ export class HardcodedauthenticationService {
     return false;
   }
 
-  authenticate2(username: string, password: string)   {
+  authenticate2(username: string,password: string)   {
     sessionStorage.setItem('authenticatedUser',username);
     // if (username === 'test@test.com' && password === 'test@test.com'){
     //   return true;
@@ -26,14 +26,13 @@ export class HardcodedauthenticationService {
 
      let basicAuthHeaderString = this.createBasicAuthenticationHeader();
 
-     let headers = new HttpHeaders( {
+     let headers = new HttpHeaders({
          Authorization: basicAuthHeaderString
        })
 
 
-    console.log(API_URL + 'api/users/test@gmail.com');
-    this.http.get<any>(API_URL + 'api/users/test@google.com', this.createBasicAuthenticationHttpHeader('test@google.com', 'qwerty'))
-    .subscribe(
+    console.log(API_URL+'api/users/test@gmail.com');
+    this.http.get<any>(API_URL+'api/users/test@gmail.com',this.createBasicAuthenticationHttpHeader('test@gmail.com','secret')).subscribe(
       (response: Response) => {console.log(response);},
       (error: Error) => {console.log(error);}
 
@@ -45,8 +44,8 @@ export class HardcodedauthenticationService {
 
 
   createBasicAuthenticationHeader() {
-      let username = 'test@google.com';
-      let password = 'qwerty';
+      let username = 'test@gmail.com'
+      let password = 'secret'
       let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);
       return basicAuthHeaderString;
     }
@@ -55,8 +54,6 @@ export class HardcodedauthenticationService {
     let httpHeaders = new HttpHeaders();
     httpHeaders = httpHeaders.append('Content-Type', 'application/json');
     httpHeaders = httpHeaders.append('Authorization', 'Basic ' + window.btoa(username + ':' + password));
-    console.log(username + ':' + password);
-    console.log(httpHeaders);
     const httpOptions = {
       headers: httpHeaders
     };

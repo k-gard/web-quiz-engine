@@ -9,17 +9,19 @@ import { HardcodedauthenticationService } from '../hardcodedauthentication.servi
 export class MenuComponent implements OnInit {
 
   message = 'Welcome';
-  name = '';
+  name = sessionStorage.getItem("authenticatedUser");
   constructor(private route: ActivatedRoute, private hardcodedAuthenticationService
     : HardcodedauthenticationService) { }
 
 
   ngOnInit(): void {
-    this.name = this.route.snapshot.params.name;
+    console.log(this.name);
+   // this.name = this.route.snapshot.params.name;
   }
 
   Logout(): void {
     sessionStorage.removeItem("authenticatedUser");
+    sessionStorage.removeItem("token");
   }
 }
 
