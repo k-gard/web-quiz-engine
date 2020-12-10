@@ -2,6 +2,10 @@ import { DataService } from './../service/data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+
+
+
+
 @Component({
   selector: 'app-solvequiz',
   templateUrl: './solvequiz.component.html',
@@ -14,7 +18,9 @@ export class SolvequizComponent implements OnInit {
   id = 0;
   success = false;
   answered = false;
+  inTime = true;
   feedback = '';
+  counter = 100;
   constructor(private route: ActivatedRoute , private dataservice: DataService) { }
   ans1 = false;
   ans2 = false;
@@ -28,7 +34,8 @@ export class SolvequizComponent implements OnInit {
                  this.options = response.options;
                  console.log(this.options[0]);
                  this.question = response.text;
-                 this.title = response.title;}
+                 this.title = response.title;
+                 this.timer(); }
    );
   }
   answerQuiz(): void{
@@ -43,5 +50,9 @@ export class SolvequizComponent implements OnInit {
                                                                       this.success = response.success;
                                                                       this.feedback = response.feedback;
    });
+}
+
+timer(): void{
+  window.setInterval(() => { if (this.counter > 0 ){this.counter = this.counter - 1; }else{this.inTime = false;} } , 100 );
 }
 }

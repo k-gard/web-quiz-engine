@@ -1,4 +1,4 @@
-import { API_ALL_QUIZZES, API_CREATE_QUIZ, API_GET_QUIZZES_PAGE, API_QUIZ_BY_ID, API_USER_QUIZZES_PAGE } from './../app.constants';
+import { API_ALL_QUIZZES, API_CREATE_QUIZ, API_GET_QUIZZES_PAGE, API_QUIZ_BY_ID, API_USER_QUIZZES_PAGE, GET_SOLVED_QUIZZES } from './../app.constants';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { User } from '../models/user';
@@ -41,6 +41,11 @@ export class DataService {
 
     }
 
+    getSolvedQuizzes(pageNumber: number): Observable<any>{
+      return this.http.get<any>(API_URL + GET_SOLVED_QUIZZES /*+ pageNumber*/ );
+
+    }
+
     getQuizzById(id: number): Observable<any>{
       return this.http.get<any>(API_URL + API_QUIZ_BY_ID + id );
     }
@@ -50,7 +55,7 @@ export class DataService {
     }
 
     deleteQuiz(id: number): Observable<any>{
-      return this.http.delete<any>(API_URL + API_QUIZ_BY_ID + id,{observe: 'response'});
+      return this.http.delete<any>(API_URL + API_QUIZ_BY_ID + id, {observe: 'response'});
     }
 
 }

@@ -12,7 +12,7 @@
 
 
 
-            <div class="container my-5">
+            <div class="container my-5" id="tablecontainer">
 
                 <table *ngIf="list.length > 0 ;else elseBlock" class="table table-striped table-dark">
 
@@ -29,10 +29,10 @@
                         <tr *ngFor="let quiz of list">
                             <td>{{quiz.title}}</td>
                             <td>{{quiz.text}}</td>
-                            <td *ngIf="!myquizzes ; else Delete" scope="row"><a routerLink="/solve/{{quiz.id}}"> Solve </a></td>
+                            <td *ngIf="!myquizzes ; else Delete" scope="row"><a class="text-white" routerLink="/solve/{{quiz.id}}"> Solve </a></td>
 
-                            <ng-template #Delete >
-                              <button type="button" class="btn btn-danger btn-md my-1 " data-toggle="modal" data-target="#exampleModalCenter" (click)="setQuizID(quiz.id)">
+                            <ng-template #Delete>
+                                <button type="button" class="btn btn-danger btn-md my-1 " data-toggle="modal" data-target="#Modal" (click)="setQuizID(quiz.id)">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                   <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -79,22 +79,22 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Modal">Delete Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete this quiz?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" (click)="deleteQuiz(quizId)" data-dismiss="modal">Yes</button>
-      </div>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this quiz?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" (click)="deleteQuiz(quizId)" data-dismiss="modal">Yes</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

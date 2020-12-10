@@ -61,7 +61,7 @@ export class ViewquizzesComponent implements OnInit {
 
 setQuizID(id: number | undefined){
   if (typeof id === 'number'){
-  this.quizId = id;}
+  this.quizId = id; }
 }
 
 
