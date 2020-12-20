@@ -1,3 +1,4 @@
+import { CreatequizSetComponent } from './createquiz-set/createquiz-set.component';
 import { SolvedquizzesComponent } from './solvedquizzes/solvedquizzes.component';
 import { ViewquizzesComponent } from './viewquizzes/viewquizzes.component';
 import { SolvequizComponent } from './solvequiz/solvequiz.component';
@@ -13,17 +14,22 @@ import { RouteGuardService } from './service/route-guard.service';
 import { MyquizzesComponent } from './myquizzes/myquizzes.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent},
-   { path: 'register', component: RegisterComponent },
-   {path: 'solvedquizzes', component: SolvedquizzesComponent, canActivate: [RouteGuardService]},
-   {path: 'welcome/:name' , component: WelcomeComponent, canActivate: [RouteGuardService]},
-   {path: 'quizzes' , component: ViewquizzesComponent, canActivate: [RouteGuardService]},
-   {path: 'myquizzes' , component: MyquizzesComponent, canActivate: [RouteGuardService]},
-   {path: 'solve/:id' , component: SolvequizComponent, canActivate: [RouteGuardService]},
-   {path: 'createquiz' , component: CreateQuizComponent, canActivate: [RouteGuardService]},
+   {path: '', component: LoginComponent },
+   {path: 'login', component: LoginComponent},
+   {path: 'register', component: RegisterComponent },
+   {path: 'welcome/:name' , component: WelcomeComponent, canActivate: [RouteGuardService],
+      children:[
+                {path: 'solvedquizzes', component: SolvedquizzesComponent, canActivate: [RouteGuardService]},
+                {path: 'quizzes' , component: ViewquizzesComponent, canActivate: [RouteGuardService]},
+                {path: 'myquizzes' , component: MyquizzesComponent, canActivate: [RouteGuardService]},
+                {path: 'createquizset' , component: CreatequizSetComponent, canActivate: [RouteGuardService]},
+                {path: 'solve/:id' , component: SolvequizComponent, canActivate: [RouteGuardService]},
+                {path: 'createquiz' , component: CreateQuizComponent, canActivate: [RouteGuardService]},
+
+              ]}
+   ,
    {path: 'logout' , component: LogoutComponent},
-   { path: '**', component: ErrorComponent, canActivate: [RouteGuardService] }
+   {path: '**', component: ErrorComponent, canActivate: [RouteGuardService] }
 ];
 
 @NgModule({

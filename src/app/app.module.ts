@@ -20,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SolvedquizzesComponent } from './solvedquizzes/solvedquizzes.component';
 import { MyquizzesComponent } from './myquizzes/myquizzes.component';
+import { CreatequizSetComponent } from './createquiz-set/createquiz-set.component';
 
 // const routes: Routes = [
 //   { path: 'login-component', component: LoginComponent },
@@ -41,6 +42,7 @@ import { MyquizzesComponent } from './myquizzes/myquizzes.component';
     FooterComponent,
     SolvedquizzesComponent,
     MyquizzesComponent,
+    CreatequizSetComponent,
   ],
   imports: [
     BrowserModule,

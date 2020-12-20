@@ -1,3 +1,4 @@
+import { ComponentdataService } from './../service/componentdata.service';
 import { Router } from '@angular/router';
 import { AppModule } from './../app.module';
 import { MatTableModule, MatTableDataSource  } from '@angular/material/table';
@@ -14,48 +15,58 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class ViewquizzesComponent implements OnInit {
 
-  constructor(private dataservice: DataService , private router: Router) { }
+  constructor(private dataservice: DataService , private router: Router ,private componentData: ComponentdataService) { }
 
   list: Quiz[] = [];
   allQuizzesList: Quiz[] = [];
   page = 0;
   totalPages = 0;
-  myquizzes = false;
   pages: number[] = [];
-  displayedColumns = ['id', 'text', 'title'];
   quizId = -1;
-
-
+  selected: boolean[] = [];
+  q : boolean[] =[];
+  quizSet: Quiz[] = [];
+  addedToSet: boolean[] = [];
+  selectedPage : number = 0
+  totalElements = 0;
+  selectedIndexes: number[] = [];
 
   ngOnInit(): void {
-    if (this.router.url.includes('myquizzes')){
-    this.myquizzes = true;
-    this.getUserQuizzes(0);
-    }else{
-    this.getQuizzesPage(0);
-    this.myquizzes = false;
-    }
 
+    this.getQuizzesPage(0);
+    this.selected = Array(this.totalElements).fill(false);
+    this.componentData.currentSelected.subscribe(selected => this.selected = selected);
+    //this.componentData.currentSelectedIndexes.subscribe(selected => this.selectedIndexes = selected);
   }
+
+
   getQuizzesPage(pageNumber: number): void{
     this.dataservice.getQuizzesPageNumber(pageNumber).subscribe(
       (response: any) => { this.list = response.content;
-                           console.log(this.list);
+                     //      console.log(this.list);
                            this.totalPages = response.totalPages;
+                           this.totalElements = response.totalElements;
                            this.pages = Array(this.totalPages).fill(null).map((x, i) => i);
+
+                           this.selectedPage = pageNumber;
+
                           }
     );
   }
+
+
 
 
   getUserQuizzes(pageNumber: number): void{
     this.dataservice.getUsersQuizzes(pageNumber).subscribe(
       (response: any) => { this.list = response.content;
-                           console.log(this.list);
+                   //        console.log(this.list);
                            this.totalPages = response.totalPages;
                            this.pages = Array(this.totalPages).fill(null).map((x, i) => i);
+
                           }
     );
+
 
 }
 
@@ -75,5 +86,42 @@ deleteQuiz(id: number|undefined): void{
   );
   }
 
+
+
 }
+
+createQuizSet(): void {
+  this.selected.forEach((element,index) => {
+    if (element){
+      this.quizSet[index] = this.list[index];
+    }
+  });
+
+  console.log(this.quizSet);
+  this.componentData.changeList(this.quizSet);
+}
+
+  addToSet(quiz: Quiz,selectedIndex: number): void {
+    console.log(this.selectedIndexes);
+    this.quizSet.push(quiz);
+  //  console.log(this.selected);
+    this.selected[selectedIndex] = true;
+    this.selectedIndexes.push(selectedIndex);
+  //  console.log(this.quizSet);
+    this.componentData.changeList(this.quizSet);
+    this.componentData.changeSelectedIndexes(this.selectedIndexes);
+    this.componentData.changeSelected(selectedIndex,true);
+  }
+
+  removeFromSet(quiz: Quiz,selectedIndex: number): void {
+    console.log(this.selectedIndexes);
+      this.quizSet.splice(this.quizSet.indexOf(quiz),1);
+      this.selected[selectedIndex] = false;
+      this.selectedIndexes.splice(selectedIndex,1);
+ //     console.log(this.quizSet);
+      this.componentData.changeList(this.quizSet);
+      this.componentData.changeSelectedIndexes(this.selectedIndexes);
+      this.componentData.changeSelected(selectedIndex,false);
+    }
+
 }

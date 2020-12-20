@@ -1,9 +1,11 @@
+import { Router } from '@angular/router';
+import { ComponentdataService } from './../service/componentdata.service';
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../models/quiz';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from '../service/data.service';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-quiz',
@@ -11,6 +13,8 @@ import { DataService } from '../service/data.service';
   styleUrls: ['./create-quiz.component.css']
 })
 export class CreateQuizComponent implements OnInit {
+
+  quizForm!:FormGroup ;
 
   QuizCreated = 'Quiz created';
   created = false;
@@ -26,13 +30,25 @@ export class CreateQuizComponent implements OnInit {
   ans3 = false;
   ans4 = false;
 
-
+  answerError = false;
 
   ans = new Array();
 
-  constructor(private dataservice: DataService) { }
+  constructor(private dataservice: DataService, private componentDataService: ComponentdataService ,private router: Router )  { }
 
   ngOnInit(): void {
+    this.quizForm = new FormGroup({
+      title: new FormControl(this.title, Validators.required),
+      text: new FormControl(this.text, Validators.required),
+      opt1: new FormControl(this.opt1, Validators.required),
+      opt2: new FormControl(this.opt2, Validators.required),
+      opt3: new FormControl(this.opt3, Validators.required),
+      opt4: new FormControl(this.opt4, Validators.required),
+      ans: new FormControl(false, Validators.required),
+
+      }),
+
+    console.log(this.router.url.valueOf());
   }
 
   createQuiz(): void{
@@ -43,14 +59,28 @@ export class CreateQuizComponent implements OnInit {
     if ( this.ans4 === true){this.ans.push(3); }
     const quiz = new Quiz( this.title, this.text, opt, this.ans);
 
-    const postQuiz = {
+    let postQuiz = {
       title : quiz.title,
       text  : quiz.text,
       options : quiz.options,
       answer : quiz.answer,
     };
 
+    if(!this.router.url.valueOf().toLowerCase().match('set')){
+      console.log('createquiz');
+    this.postQuiz(postQuiz);}
+    else {this.componentDataService.changeQuiz(postQuiz);
+      console.log('createquizSet');}
 
+  }
+
+
+postQuiz(postQuiz: any): any {
+
+  if ( !(this.ans1 || this.ans2 || this.ans3 || this.ans4) ){
+  this.answerError = true;
+  return;
+}
 
     this.dataservice.createquiz( postQuiz).subscribe(
       (response: Response) => {console.log(response),
@@ -70,5 +100,6 @@ export class CreateQuizComponent implements OnInit {
 
 
   }
-
 }
+
+

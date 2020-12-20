@@ -1,0 +1,109 @@
+<div class='container'>
+    <!-- <div class="container text-center  my-4">
+        <div class="alert alert-success my-4" *ngIf="created">{{QuizCreated}}</div>
+
+    </div>
+    <div class="container"> -->
+
+
+    <div class="row my-5">
+
+
+
+
+
+        <div class="col-8 mx-auto bg-dark text-white my-5" id="formcontainer">
+            <div class="text-center p-3">
+                <h4>Create a quiz Set</h4>
+            </div>
+
+            <form class="col-12 p-3">
+                <div class="form-row my-3">
+
+
+                    <label class="col-sm-2 col-form-label" for="title">Title:</label>
+                    <input name="title" type="text" class="form-control col-sm-10" id="title" placeholder="Quiz title" value="" required [(ngModel)]="title">
+
+                </div>
+
+
+
+                <div class="form-row my-3">
+
+                    <label class="col-sm-2 col-form-label" for="text">Description:</label>
+                    <input name="text" type="text" class="form-control col-sm-10" id="text" placeholder="Description" value="" [(ngModel)]="description">
+
+
+                </div>
+
+            </form>
+            <div class="row  d-flex justify-content-center text-center my-3">
+
+                <button class="btn btn-light btn-sm" (click)="createQuiz=true;addfromList=false">Create a new quiz</button>
+                <button class="btn btn-light mx-3 btn-sm" (click)=" createQuiz=false;addfromList=true">Add an existing quiz </button>
+
+            </div>
+
+            <div class="flex-column">
+                <div *ngIf="addfromList">
+
+                    <app-viewquizzes></app-viewquizzes>
+
+                </div>
+
+
+                <div *ngIf="createQuiz">
+
+                    <app-create-quiz></app-create-quiz>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div>
+                <button (click)=createQuizSet() type="submit" class="btn btn-primary btn-block">Create Quiz Set</button>
+            </div>
+
+
+        </div>
+
+        <div class=" col-2 my-5">
+            <div class="fixed " *ngIf="total_list.length>0">
+                <!-- <ng-container *ngIf="total_list.length>0">
+            <ul>
+                <li *ngFor='let item of total_list'>{{item.title}}</li>
+            </ul>
+        </ng-container> -->
+
+                <table class=" table table-sm table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let item of total_list ; let i = index'>
+                            <th scope="row">{{i+1}}</th>
+                            <td class='table-light'>{{item.title}}</td>
+                            <td>
+                                <a (click)="deleteListElement(i)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" style="color:rgb(175, 21, 21)" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                          </svg></a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
