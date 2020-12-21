@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -51,6 +51,7 @@ import { CreatequizSetComponent } from './createquiz-set/createquiz-set.componen
     HttpClientModule,
     MatTableModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
 
   providers: [

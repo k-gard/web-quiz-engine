@@ -5,7 +5,7 @@ import { Quiz } from '../models/quiz';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from '../service/data.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-quiz',
@@ -14,7 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class CreateQuizComponent implements OnInit {
 
-  quizForm!:FormGroup ;
+  quizForm!: FormGroup ;
 
   QuizCreated = 'Quiz created';
   created = false;
@@ -34,7 +34,7 @@ export class CreateQuizComponent implements OnInit {
 
   ans = new Array();
 
-  constructor(private dataservice: DataService, private componentDataService: ComponentdataService ,private router: Router )  { }
+  constructor(private dataservice: DataService, private componentDataService: ComponentdataService , private router: Router )  { }
 
   ngOnInit(): void {
     this.quizForm = new FormGroup({
@@ -44,47 +44,53 @@ export class CreateQuizComponent implements OnInit {
       opt2: new FormControl(this.opt2, Validators.required),
       opt3: new FormControl(this.opt3, Validators.required),
       opt4: new FormControl(this.opt4, Validators.required),
-      ans: new FormControl(false, Validators.required),
+      ans1: new FormControl(false, Validators.required),
+      ans2: new FormControl(false, Validators.required),
+      ans3: new FormControl(false, Validators.required),
+      ans4: new FormControl(false, Validators.required)
+      });
 
-      }),
-
-    console.log(this.router.url.valueOf());
   }
 
   createQuiz(): void{
-    const opt = [this.opt1, this.opt2 , this.opt3 , this.opt4];
-    if ( this.ans1 === true){this.ans.push(0); }
-    if ( this.ans2 === true){this.ans.push(1); }
-    if ( this.ans3 === true){this.ans.push(2); }
-    if ( this.ans4 === true){this.ans.push(3); }
-    const quiz = new Quiz( this.title, this.text, opt, this.ans);
+     this.opt1 = this.quizForm.get('opt1')?.value;
+     this.opt2 = this.quizForm.get('opt2')?.value;
+     this.opt3 = this.quizForm.get('opt3')?.value;
+     this.opt4 = this.quizForm.get('opt4')?.value;
 
-    let postQuiz = {
-      title : quiz.title,
-      text  : quiz.text,
-      options : quiz.options,
-      answer : quiz.answer,
-    };
 
-    if(!this.router.url.valueOf().toLowerCase().match('set')){
-      console.log('createquiz');
-    this.postQuiz(postQuiz);}
-    else {this.componentDataService.changeQuiz(postQuiz);
-      console.log('createquizSet');}
+     const opt = [this.opt1, this.opt2 , this.opt3 , this.opt4];
+     if ( this.quizForm.get('ans1')?.value === true){this.ans.push(0); }
+     if ( this.quizForm.get('ans2')?.value === true){this.ans.push(1); }
+     if ( this.quizForm.get('ans3')?.value === true){this.ans.push(2); }
+     if ( this.quizForm.get('ans4')?.value === true){this.ans.push(3); }
+     const quiz = new Quiz( this.quizForm.get('title')?.value, this.quizForm.get('text')?.value, opt, this.ans);
+
+     const postQuiz = {
+       title : quiz.title,
+       text  : quiz.text,
+       options : quiz.options,
+       answer : quiz.answer,
+     };
+     console.log(postQuiz);
+     if (!this.router.url.valueOf().toLowerCase().match('set')){
+       console.log('createquiz');
+       this.postQuiz(postQuiz); }
+      else {this.componentDataService.changeQuiz(postQuiz);
+      }
 
   }
 
 
 postQuiz(postQuiz: any): any {
 
-  if ( !(this.ans1 || this.ans2 || this.ans3 || this.ans4) ){
+  if ( !(postQuiz.answer[0] || postQuiz.answer[1] || postQuiz.answer[2] || postQuiz.answer[3]) ){
   this.answerError = true;
   return;
-}
+  }
 
-    this.dataservice.createquiz( postQuiz).subscribe(
-      (response: Response) => {console.log(response),
-                               this.created = true,
+  this.dataservice.createquiz(postQuiz).subscribe(
+      (response: Response) => {this.created = true,
                                this.title = '';
                                this.text = '';
                                this.opt1 = '';
@@ -97,8 +103,6 @@ postQuiz(postQuiz: any): any {
                                this.ans4 = false; },
       (error: Error) => {console.log(error.message); }
       );
-
-
   }
 }
 

@@ -12,7 +12,7 @@
 
 
 
-        <div class="col-8 mx-auto bg-dark text-white my-5" id="formcontainer">
+        <div class="col-10 mx-auto  my-5" id="formcontainer">
             <div class="text-center p-3">
                 <h4>Create a quiz Set</h4>
             </div>
@@ -21,8 +21,8 @@
                 <div class="form-row my-3">
 
 
-                    <label class="col-sm-2 col-form-label" for="title">Title:</label>
-                    <input name="title" type="text" class="form-control col-sm-10" id="title" placeholder="Quiz title" value="" required [(ngModel)]="title">
+                    <label class="col-sm-2 col-form-label" for="title">Category:</label>
+                    <input name="title" type="text" class="form-control col-sm-10" id="title" placeholder="Quiz title" value="" required [(ngModel)]="category">
 
                 </div>
 
@@ -62,16 +62,16 @@
 
 
 
-
-            <div>
-                <button (click)=createQuizSet() type="submit" class="btn btn-primary btn-block">Create Quiz Set</button>
+            <div class="my-5">
+                <div>
+                    <button (click)=createQuizSet() type="submit" class="btn btn-primary btn-block">Create Quiz Set</button>
+                </div>
             </div>
-
 
         </div>
 
         <div class=" col-2 my-5">
-            <div class="fixed " *ngIf="total_list.length>0">
+            <div class="fixed " *ngIf="totalList.length>0">
                 <!-- <ng-container *ngIf="total_list.length>0">
             <ul>
                 <li *ngFor='let item of total_list'>{{item.title}}</li>
@@ -87,7 +87,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor='let item of total_list ; let i = index'>
+                        <tr *ngFor='let item of totalList ; let i = index'>
                             <th scope="row">{{i+1}}</th>
                             <td class='table-light'>{{item.title}}</td>
                             <td>

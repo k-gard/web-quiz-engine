@@ -38,7 +38,8 @@ export class MyquizzesComponent implements OnInit {
 
   getUserQuizzes(pageNumber: number): void{
     this.dataservice.getUsersQuizzes(pageNumber).subscribe(
-      (response: any) => { this.list = response.content;
+      (response: any) => { console.log(response);
+                           this.list = response.content;
                            console.log(this.list);
                            this.totalPages = response.totalPages;
 
@@ -49,9 +50,9 @@ export class MyquizzesComponent implements OnInit {
 
 }
 
-setQuizID(id: number | undefined){
+setQuizID(id: number | undefined): void{
   if (typeof id === 'number'){
-  this.quizId = id;}
+  this.quizId = id; }
 }
 
 

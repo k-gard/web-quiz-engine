@@ -1,6 +1,8 @@
-import { API_ALL_QUIZZES, API_CREATE_QUIZ, API_GET_QUIZZES_PAGE, API_QUIZ_BY_ID, API_USER_QUIZZES_PAGE, GET_SOLVED_QUIZZES } from './../app.constants';
+import { QuizSet } from './../models/quizSet';
+import { API_ALL_QUIZZES, API_CREATE_QUIZ, API_GET_QUIZZES_PAGE,
+API_QUIZ_BY_ID, API_USER_QUIZZES_PAGE, CREATE_QUIZ_SET, GET_SOLVED_QUIZZES } from './../app.constants';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { User } from '../models/user';
 import { API_REGISTER_USER, API_URL } from '../app.constants';
 import { Observable } from 'rxjs';
@@ -56,6 +58,10 @@ export class DataService {
 
     deleteQuiz(id: number): Observable<any>{
       return this.http.delete<any>(API_URL + API_QUIZ_BY_ID + id, {observe: 'response'});
+    }
+
+    createQuizSet(quizSet: QuizSet): Observable<any>{
+      return this.http.post<any>(API_URL + CREATE_QUIZ_SET, quizSet);
     }
 
 }

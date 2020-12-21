@@ -9,3 +9,4 @@ export const API_LOGIN = 'api/login';
 export const TOKEN = 'token';
 export const AUTHENTICATED_USER = 'authenticatedUser';
 export const GET_SOLVED_QUIZZES = 'api/quizzes/completed';
+export const CREATE_QUIZ_SET = 'api/quizSet/';

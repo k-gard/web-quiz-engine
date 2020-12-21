@@ -3,4 +3,7 @@
     margin-right: auto;
 }
 
-#formcontainer {}
+#inputError {
+    padding-top: 3px;
+    height: 15px;
+}

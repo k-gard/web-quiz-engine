@@ -14,61 +14,83 @@
 
 
 
-        <div class="col-8 mx-auto bg-dark text-white" id="formcontainer">
+        <div class="col-8 mx-auto " id="formcontainer">
 
             <div class="text-center p-3">
                 <h4>Create a quiz</h4>
             </div>
 
-            <form class="col-12 p-3">
+            <form class="col-12 p-3" [formGroup]='quizForm'>
 
                 <div class="form-row my-3">
                     <label class="col-sm-2 col-form-label" for="title">Title:</label>
-                    <input name="title" type="text" [ngClass]="['form-control', 'col-sm-10',(title.invalid && title.dirty)?'is-invalid':'']" id="title" placeholder="Quiz title" value="" #title='ngModel' required [(ngModel)]="quizForm.title">
+                    <input name="title" type="text" [ngClass]="['form-control', 'col-sm-10',(quizForm.controls.title.invalid && quizForm.controls.title.dirty)?'is-invalid':'']" id="title" placeholder="Quiz title" value="" required formControlName="title">
 
                 </div>
+                <div class="d-flex justify-content-center text-center">
+                    <p *ngIf="(quizForm.controls.title.invalid && quizForm.controls.title.dirty)" class='text-danger text-center'>Field cannot be empty</p>
+                </div>
+                <!-- ",(quizForm.get('title'). && quizForm.get('title').dirty?'is-invalid':'']"
+                [ngClass]="['form-control', 'col-sm-10',(text.invalid && text.dirty)?'is-invalid':'']"
 
-
+                -->
 
                 <div class="form-row my-3">
 
                     <label class="col-sm-2 col-form-label" for="text">Question:</label>
-                    <input name="text" type="text" [ngClass]="['form-control', 'col-sm-10',(text.invalid && text.dirty)?'is-invalid':'']" class="form-control col-sm-10" id="text" placeholder="Quiz question" value="" #text='ngModel' required [(ngModel)]="quizForm.text">
+                    <input name="text" type="text" [ngClass]="['form-control', 'col-sm-10',(quizForm.controls.text.invalid && quizForm.controls.text.dirty)?'is-invalid':'']" id="text" placeholder="Quiz question" value="" required formControlName="text">
 
 
+                </div>
+                <div class="d-flex justify-content-center text-center">
+                    <p *ngIf="(quizForm.controls.text.invalid && quizForm.controls.text.dirty)" class='text-danger text-center'>Field cannot be empty</p>
                 </div>
 
                 <div class="form-row my-3">
 
                     <label class="col-sm-2 col-form-label" for="option1">Option 1:</label>
-                    <input name="option1" type="text" [ngClass]="['form-control', 'col-sm-10',(opt1.invalid && opt1.dirty)?'is-invalid':'']" id="option1" #opt1='ngModel' placeholder="Quiz option 1" value="" required [(ngModel)]="quizForm.opt1">
+                    <input name="option1" type="text" [ngClass]="['form-control', 'col-sm-10',(quizForm.controls.opt1.invalid && quizForm.controls.opt1.dirty)?'is-invalid':'']" id="option1" placeholder="Quiz option 1" value="" formControlName="opt1">
 
 
+                </div>
+                <div class="d-flex justify-content-center text-center">
+                    <p *ngIf="(quizForm.controls.opt1.invalid && quizForm.controls.opt1.dirty)" class='text-danger text-center'>Field cannot be empty</p>
                 </div>
 
                 <div class="form-row my-3">
 
                     <label class="col-sm-2 col-form-label" for="option1">Option 2:</label>
-                    <input name="option2" type="text" [ngClass]="['form-control', 'col-sm-10',(opt2.invalid && opt2.dirty)?'is-invalid':'']" id="option2" #opt2='ngModel' placeholder="Quiz option 2" value="" required [(ngModel)]="quizForm.opt2">
+                    <input name="option2" type="text" [ngClass]="['form-control', 'col-sm-10',(quizForm.controls.opt2.invalid && quizForm.controls.opt2.dirty)?'is-invalid':'']" id="option2" placeholder="Quiz option 2" value="" formControlName="opt2">
 
 
+                </div>
+                <div class="d-flex justify-content-center text-center">
+                    <p *ngIf="(quizForm.controls.opt2.invalid && quizForm.controls.opt2.dirty)" class='text-danger text-center'>Field cannot be empty</p>
                 </div>
 
                 <div class="form-row my-3">
 
                     <label class="col-sm-2 col-form-label" for="option1">Option 3:</label>
-                    <input name="option3" type="text" [ngClass]="['form-control', 'col-sm-10',(opt3.invalid && opt3.dirty)?'is-invalid':'']" id="option3" #opt3='ngModel' placeholder="Quiz option 3" value="" required [(ngModel)]="quizForm.opt3">
+                    <input name="option3" type="text" [ngClass]="['form-control', 'col-sm-10',(quizForm.controls.opt3.invalid && quizForm.controls.opt3.dirty)?'is-invalid':'']" id="option3" placeholder="Quiz option 3" value="" formControlName="opt3">
 
 
+                </div>
+
+                <div class="d-flex justify-content-center text-center">
+                    <p *ngIf="(quizForm.controls.opt3.invalid && quizForm.controls.opt3.dirty)" class='text-danger text-center'>Field cannot be empty</p>
                 </div>
 
 
                 <div class="form-row my-3">
 
                     <label class="col-sm-2 col-form-label" for="option1">Option 4:</label>
-                    <input name="option4" type="text" [ngClass]="['form-control', 'col-sm-10',(opt4.invalid && opt4.dirty)?'is-invalid':'']" id="option4" #opt4='ngModel' placeholder="Quiz option 4" value="" required [(ngModel)]="quizForm.opt4">
+                    <input name="option4" type="text" [ngClass]="['form-control', 'col-sm-10',(quizForm.controls.opt4.invalid && quizForm.controls.opt4.dirty)?'is-invalid':'']" id="option4" placeholder="Quiz option 4" value="" formControlName="opt4">
 
 
+                </div>
+
+                <div class="d-flex justify-content-center text-center">
+                    <p *ngIf="(quizForm.controls.opt4.invalid && quizForm.controls.opt4.dirty)" class='text-danger text-center'>Field cannot be empty</p>
                 </div>
 
 
@@ -93,7 +115,7 @@
                         <div class="form-check">
 
                             <label class="" for="opt1"> Option 1 :</label>
-                            <input class="mx-1" type="checkbox" id="opt1" name="opt1" #opt1='ngModel' value="0" [(ngModel)]="ans1">
+                            <input class="mx-1" type="checkbox" id="opt1" name="opt1" value="0" formControlName="ans1">
 
 
                         </div>
@@ -101,7 +123,7 @@
                         <div class="form-check">
 
                             <label class="" for="opt2"> Option 2 :</label>
-                            <input class="mx-1" type="checkbox" id="opt2" name="opt2" #opt2='ngModel' value="1" [(ngModel)]="ans2">
+                            <input class="mx-1" type="checkbox" id="opt2" name="opt2" value="1" formControlName="ans2">
 
 
                         </div>
@@ -109,7 +131,7 @@
                         <div class="form-check ">
 
                             <label class="" for="opt3"> Option 3 : </label>
-                            <input class="mx-1" type="checkbox" id="opt3" name="opt3" #opt3='ngModel' value="2" [(ngModel)]="ans3">
+                            <input class="mx-1" type="checkbox" id="opt3" name="opt3" value="2" formControlName="ans3">
 
 
                         </div>
@@ -117,7 +139,7 @@
                         <div class="form-check">
 
                             <label class="" for="opt4"> Option 4 :</label>
-                            <input class="mx-1" type="checkbox" id="opt4" name="opt4" value="3" [(ngModel)]="ans4">
+                            <input class="mx-1" type="checkbox" id="opt4" name="opt4" value="3" formControlName="ans4">
 
 
                         </div>
