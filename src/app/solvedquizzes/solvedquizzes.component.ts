@@ -3,7 +3,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Quiz } from '../models/quiz';
-import { DataService } from '../service/data.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-solvedquizzes',

@@ -1,4 +1,4 @@
-import { API_LOGIN, API_URL, AUTHENTICATED_USER, TOKEN } from './../app.constants';
+import { API_LOGIN, API_URL, AUTHENTICATED_USER, TOKEN } from '../app.constants';
 import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

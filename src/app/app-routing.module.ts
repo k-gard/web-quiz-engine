@@ -10,7 +10,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import { CreateQuizComponent } from './create-quiz/create-quiz.component';
 import { LogoutComponent } from './logout/logout.component';
-import { RouteGuardService } from './service/route-guard.service';
+import { RouteGuardService } from './services/route-guard.service';
 import { MyquizzesComponent } from './myquizzes/myquizzes.component';
 
 const routes: Routes = [

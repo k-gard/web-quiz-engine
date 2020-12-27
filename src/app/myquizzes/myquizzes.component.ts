@@ -3,7 +3,7 @@ import { AppModule } from './../app.module';
 import { MatTableModule, MatTableDataSource  } from '@angular/material/table';
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../models/quiz';
-import { DataService } from '../service/data.service';
+import { DataService } from '../services/data.service';
 import { HttpResponse } from '@angular/common/http';
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedauthenticationService } from '../hardcodedauthentication.service';
-import { BasicAuthenticationService } from '../service/basicauthentication.service';
+import { BasicAuthenticationService } from '../services/basicauthentication.service';
 
 @Component({
   selector: 'app-login',

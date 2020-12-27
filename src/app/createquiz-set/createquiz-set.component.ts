@@ -1,7 +1,7 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DataService } from './../service/data.service';
+import { DataService } from '../services/data.service';
 import { from, Observable } from 'rxjs';
-import { ComponentdataService } from './../service/componentdata.service';
+import { ComponentdataService } from '../services/componentdata.service';
 import { QuizSet } from './../models/quizSet';
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../models/quiz';

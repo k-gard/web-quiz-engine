@@ -1,3 +1,4 @@
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
@@ -14,7 +15,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { CreateQuizComponent } from './create-quiz/create-quiz.component';
 import { SolvequizComponent } from './solvequiz/solvequiz.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpInterceptorService } from './service/http-interceptor-BasicAuth.service';
+import { HttpInterceptorService } from './services/http-interceptor-BasicAuth.service';
 import { ViewquizzesComponent } from './viewquizzes/viewquizzes.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,6 +44,7 @@ import { CreatequizSetComponent } from './createquiz-set/createquiz-set.componen
     SolvedquizzesComponent,
     MyquizzesComponent,
     CreatequizSetComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

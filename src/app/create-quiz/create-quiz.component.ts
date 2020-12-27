@@ -1,10 +1,11 @@
+import { SidebarComponent } from './../sidebar/sidebar.component';
 import { Router } from '@angular/router';
-import { ComponentdataService } from './../service/componentdata.service';
+import { ComponentdataService } from '../services/componentdata.service';
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../models/quiz';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { DataService } from '../service/data.service';
+import { DataService } from '../services/data.service';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -34,7 +35,7 @@ export class CreateQuizComponent implements OnInit {
 
   ans = new Array();
 
-  constructor(private dataservice: DataService, private componentDataService: ComponentdataService , private router: Router )  { }
+  constructor(private dataservice: DataService, private componentDataService: ComponentdataService , private router: Router)  { }
 
   ngOnInit(): void {
     this.quizForm = new FormGroup({
@@ -83,14 +84,15 @@ export class CreateQuizComponent implements OnInit {
 
 
 postQuiz(postQuiz: any): any {
-
-  if ( !(postQuiz.answer[0] || postQuiz.answer[1] || postQuiz.answer[2] || postQuiz.answer[3]) ){
+  console.log(postQuiz.answer.length);
+  if ( postQuiz.answer.length === 0 ){
   this.answerError = true;
   return;
   }
 
   this.dataservice.createquiz(postQuiz).subscribe(
       (response: Response) => {this.created = true,
+                               this.reloadComponent(),
                                this.title = '';
                                this.text = '';
                                this.opt1 = '';
@@ -104,6 +106,14 @@ postQuiz(postQuiz: any): any {
       (error: Error) => {console.log(error.message); }
       );
   }
+
+
+  reloadComponent() {
+    let currentUrl = this.router.url;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([currentUrl]);
+    }
 }
 
 

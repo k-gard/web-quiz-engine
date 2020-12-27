@@ -1,6 +1,6 @@
-import { DataService } from './../service/data.service';
+import { DataService } from '../services/data.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -21,7 +21,7 @@ export class SolvequizComponent implements OnInit {
   inTime = true;
   feedback = '';
   counter = 100;
-  constructor(private route: ActivatedRoute , private dataservice: DataService) { }
+  constructor(private route: ActivatedRoute , private dataservice: DataService ,private router: Router) { }
   ans1 = false;
   ans2 = false;
   ans3 = false;
@@ -49,10 +49,19 @@ export class SolvequizComponent implements OnInit {
    this.dataservice.solveQuiz(this.id, answer).subscribe(response => {console.log(response);
                                                                       this.success = response.success;
                                                                       this.feedback = response.feedback;
+                                                                      this.reloadComponent();
    });
 }
 
 timer(): void{
   window.setInterval(() => { if (this.counter > 0 ){this.counter = this.counter - 1; }else{this.inTime = false;} } , 100 );
 }
+
+reloadComponent() {
+  let currentUrl = this.router.url;
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([currentUrl]);
+  }
+
 }
