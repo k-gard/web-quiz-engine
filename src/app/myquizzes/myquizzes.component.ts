@@ -24,7 +24,7 @@ export class MyquizzesComponent implements OnInit {
   pages: number[] = [];
   displayedColumns = ['id', 'text', 'title'];
   quizId = -1;
-
+  selectedPage =0
 
 
   ngOnInit(): void {
@@ -44,6 +44,7 @@ export class MyquizzesComponent implements OnInit {
                            this.totalPages = response.totalPages;
 
                            this.pages = Array(this.totalPages).fill(null).map((x, i) => i);
+                           this.selectedPage = pageNumber;
                            console.log(this.pages);
                           }
     );

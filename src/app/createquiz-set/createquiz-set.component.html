@@ -1,48 +1,47 @@
-<div class="col-10 mx-auto  my-5" id="formcontainer">
-    <div class="text-center p-3">
-        <h4>Create a quiz Set</h4>
-    </div>
+<div class="text-center p-3">
+    <h4>Create a quiz Set</h4>
+</div>
 
-    <form class="col-12 p-3">
-        <div class="form-row my-3">
-
-
-            <label class="col-sm-2 col-form-label" for="title">Category:</label>
-            <input name="title" type="text" class="form-control col-sm-10" id="title" placeholder="Quiz title" value="" required [(ngModel)]="category">
-
-        </div>
+<form class="col-12 p-3">
+    <div class="form-row my-3">
 
 
-
-        <div class="form-row my-3">
-
-            <label class="col-sm-2 col-form-label" for="text">Description:</label>
-            <input name="text" type="text" class="form-control col-sm-10" id="text" placeholder="Description" value="" [(ngModel)]="description">
-
-
-        </div>
-
-    </form>
-
-
-    <div class="row  d-flex justify-content-center text-center my-3">
-
-        <button class="btn btn-light btn-sm" (click)="createQuiz=true;addfromList=false">Create a new quiz</button>
-        <button class="btn btn-light mx-3 btn-sm" (click)=" createQuiz=false;addfromList=true">Add an existing quiz </button>
+        <label class="col-sm-2 col-form-label" for="title">Category:</label>
+        <input name="title" type="text" class="form-control col-sm-10" id="title" placeholder="Quiz title" value="" required [(ngModel)]="category">
 
     </div>
 
 
 
+    <div class="form-row my-3">
+
+        <label class="col-sm-2 col-form-label" for="text">Description:</label>
+        <input name="text" type="text" class="form-control col-sm-10" id="text" placeholder="Description" value="" [(ngModel)]="description">
 
 
-    <div class="my-5">
-        <div>
-            <button (click)=createQuizSet() type="submit" class="btn btn-primary btn-block">Create Quiz Set</button>
-        </div>
     </div>
+
+</form>
+
+
+<div class="row  d-flex justify-content-center text-center my-3">
+
+    <button class="btn btn-light btn-sm" (click)="createQuiz=true;addfromList=false">Create a new quiz</button>
+    <button class="btn btn-light mx-3 btn-sm" (click)=" createQuiz=false;addfromList=true">Add an existing quiz </button>
 
 </div>
+
+
+
+
+
+<div class="my-5">
+    <div>
+        <button (click)=createQuizSet() type="submit" class="btn btn-primary btn-block">Create Quiz Set</button>
+    </div>
+</div>
+
+
 
 <div class='container-fluid'>
 

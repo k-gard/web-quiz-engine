@@ -1,43 +1,43 @@
-<div class="container-fluid my-5" id="tablecontainer">
+<div class="d-flex justify-content-center ">
+    <div class='table responsive'>
+        <table *ngIf="list.length > 0 " class="table table-sm  table-striped table-hover my-5">
 
-    <table *ngIf="list.length > 0 " class="table-md  table-striped table-hover ">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Question</th>
+                    <th scope="col">Add to / Remove from Set</th>
 
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Question</th>
-                <th scope="col">Add to / Remove from Set</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            </tr>
-        </thead>
-        <tbody>
+                <tr [ngClass]="[(selected[selectedPage * 10+i])? 'table-success':'table-light']" *ngFor="let quiz of list ;let i = index">
+                    <td>{{quiz.title}}</td>
+                    <td>{{quiz.text}}</td>
 
-            <tr [ngClass]="[(selected[selectedPage * 10+i])? 'table-success':'table-light']" *ngFor="let quiz of list ;let i = index">
-                <td>{{quiz.title}}</td>
-                <td>{{quiz.text}}</td>
-
-                <!-- <td scope="row"><a class="text-white" routerLink="/solve/{{quiz.id}}"> Solve </a></td> -->
-                <!-- <td><input type="checkbox" value={{quiz.id}} [(ngModel)]="selected[i]"></td> -->
-                <td><a *ngIf="!selected[selectedPage * 10+i] ; else Selected" (click)="addToSet(quiz,selectedPage * 10 + i)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" style="color:rgb(21, 175, 21)" viewBox="0 0 16 16">
+                    <!-- <td scope="row"><a class="text-white" routerLink="/solve/{{quiz.id}}"> Solve </a></td> -->
+                    <!-- <td><input type="checkbox" value={{quiz.id}} [(ngModel)]="selected[i]"></td> -->
+                    <td><a *ngIf="!selected[selectedPage * 10+i] ; else Selected" (click)="addToSet(quiz,selectedPage * 10 + i)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle-fill" style="color:rgb(21, 175, 21)" viewBox="0 0 16 16">
                               <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                             </svg></a>
-                    <ng-template #Selected>
-                        <a (click)="removeFromSet(quiz,i)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash-circle-fill" style="color:rgb(175, 21, 21)" viewBox="0 0 16 16">
+                        <ng-template #Selected>
+                            <a (click)="removeFromSet(quiz,i)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash-circle-fill" style="color:rgb(175, 21, 21)" viewBox="0 0 16 16">
                               <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z"/>
                             </svg>
-                        </a>
+                            </a>
 
-                    </ng-template>
+                        </ng-template>
 
-                </td>
+                    </td>
 
 
-            </tr>
+                </tr>
 
-        </tbody>
-    </table>
-
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

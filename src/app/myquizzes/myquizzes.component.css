@@ -5,3 +5,7 @@
 .table {
     border: 0px !important;
 }
+
+a:hover {
+    cursor: pointer;
+}
