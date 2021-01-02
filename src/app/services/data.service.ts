@@ -1,6 +1,6 @@
-import { QuizSet } from '../models/quizSet';
+import { QuizSet } from './../models/quizSet';
 import { API_ALL_QUIZZES, API_CREATE_QUIZ, API_GET_QUIZZES_PAGE,
-API_QUIZ_BY_ID, API_USERSTATS, API_USER_QUIZZES_PAGE, CREATE_QUIZ_SET, GET_SOLVED_QUIZZES } from '../app.constants';
+API_QUIZ_BY_ID, API_USERSTATS, API_USER_QUIZZES_PAGE, CREATE_QUIZ_SET, GET_SOLVED_QUIZZES } from './../app.constants';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { User } from '../models/user';

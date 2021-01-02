@@ -1,4 +1,4 @@
-import { ComponentdataService } from '../services/componentdata.service';
+import { ComponentdataService } from './../services/componentdata.service';
 import { Router } from '@angular/router';
 import { AppModule } from './../app.module';
 import { MatTableModule, MatTableDataSource  } from '@angular/material/table';
@@ -113,15 +113,18 @@ createQuizSet(): void {
     this.componentData.changeSelected(selectedIndex,true);
   }
 
-  removeFromSet(quiz: Quiz,selectedIndex: number): void {
-    console.log(this.selectedIndexes);
+  removeFromSet(quiz: Quiz,rowNumber: number): void {
+      //remove the quiz from the quizSet list
       this.quizSet.splice(this.quizSet.indexOf(quiz),1);
-      this.selected[selectedIndex] = false;
-      this.selectedIndexes.splice(selectedIndex,1);
- //     console.log(this.quizSet);
+      //set the table selected row to false
+      this.selected[rowNumber] = false;
+      //remove the selected table row from the selected rows Array
+      const i = this.selectedIndexes.indexOf(rowNumber);
+      this.selectedIndexes.splice(i,1);
+      //update the component data service lists
       this.componentData.changeList(this.quizSet);
       this.componentData.changeSelectedIndexes(this.selectedIndexes);
-      this.componentData.changeSelected(selectedIndex,false);
+      this.componentData.changeSelected(rowNumber,false);
     }
 
 }

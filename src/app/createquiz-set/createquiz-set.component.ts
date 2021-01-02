@@ -1,7 +1,7 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DataService } from '../services/data.service';
+import { DataService } from './../services/data.service';
 import { from, Observable } from 'rxjs';
-import { ComponentdataService } from '../services/componentdata.service';
+import { ComponentdataService } from './../services/componentdata.service';
 import { QuizSet } from './../models/quizSet';
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../models/quiz';
@@ -76,7 +76,7 @@ export class CreatequizSetComponent implements OnInit {
 
   console.log(index);
 
-
+  console.log(this.selectedIndexes);
   for (let i = 0 ; i < this.existingList.length ; i++){
     if (this.existingList[i].id === this.totalList[index].id ){
       this.existingList.splice(i, 1);

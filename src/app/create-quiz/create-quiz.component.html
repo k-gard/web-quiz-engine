@@ -40,7 +40,6 @@
                     <label class="col-sm-2 col-form-label" for="text">Question:</label>
                     <input name="text" type="text" [ngClass]="['form-control', 'col-sm-10',(quizForm.controls.text.invalid && quizForm.controls.text.dirty)?'is-invalid':'']" id="text" placeholder="Quiz question" value="" required formControlName="text">
 
-
                 </div>
                 <div class="d-flex justify-content-center text-center">
                     <p *ngIf="(quizForm.controls.text.invalid && quizForm.controls.text.dirty)" class='text-danger text-center'>Field cannot be empty</p>

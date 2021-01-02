@@ -31,7 +31,7 @@ export class SolvedquizzesComponent implements OnInit {
 
 
     this.getSolvedQuizzes(0);
-    this.getQuizzes(this.list);
+ //   this.getQuizzes(this.list);
 
   }
 
