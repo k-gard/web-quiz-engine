@@ -1,0 +1,36 @@
+<div class="col-sm-8  mx-auto my-5">
+
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8  mx-auto my-5">
+
+            <div class="d-flex justify-content-center">
+                <h3>{{quizSet.description}}</h3>
+
+            </div>
+            <div>
+                <button *ngIf="notStarted; else started" class="btn" (click)="start()">click to start</button>
+            </div>
+            <ng-template #started>
+                <div>
+                    <ul class="pagination pagination-sm my-5">
+                        <li *ngFor="let quiz of quizSet?.quizzes;let i = index" class="page-item ">
+                            <a class="btn btn-sm btn-primary">{{i+1}}</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" [style.width.%]="counter" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">{{(counter / 10) | number: '1.0-0'}} {{(counter / 10
+                        <=1 )&&(counter / 10> 0) ? 'second' : 'seconds'}}</div>
+                </div>
+                <div class="container" style="background-color: rgb(197, 197, 197);">
+                    <app-solve-quiz-in-quiz-set class="my-5" [quizSet]="quizSet"></app-solve-quiz-in-quiz-set>
+                </div>
+            </ng-template>
+        </div>
+    </div>

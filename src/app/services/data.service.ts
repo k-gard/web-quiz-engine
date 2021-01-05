@@ -1,5 +1,5 @@
 import { QuizSet } from './../models/quizSet';
-import { API_ALL_QUIZZES, API_CREATE_QUIZ, API_GET_QUIZZES_PAGE,
+import { API_ALL_QUIZZES, API_CREATE_QUIZ, API_GET_QUIZSET, API_GET_QUIZZES_PAGE,
 API_QUIZ_BY_ID, API_USERSTATS, API_USER_QUIZZES_PAGE, CREATE_QUIZ_SET, GET_SOLVED_QUIZZES } from './../app.constants';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -67,6 +67,17 @@ export class DataService {
     getStats(): Observable<any>{
       return this.http.get(API_URL+API_USERSTATS);
     }
+
+    getQuizSetByID(id: number): Observable<any>{
+
+      return this.http.get(API_URL+API_GET_QUIZSET + id);
+    }
+
+    getQuizSetsPaged(id: number): Observable<any>{
+
+      return this.http.get(API_URL+API_GET_QUIZSET +id);
+    }
+
 
 }
 

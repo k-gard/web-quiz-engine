@@ -1,3 +1,5 @@
+import { SolveQuizSetComponent } from './solve-quiz-set/solve-quiz-set.component';
+import { ViewQuizSetsComponent } from './view-quiz-sets/view-quiz-sets.component';
 import { CreatequizSetComponent } from './createquiz-set/createquiz-set.component';
 import { SolvedquizzesComponent } from './solvedquizzes/solvedquizzes.component';
 import { ViewquizzesComponent } from './viewquizzes/viewquizzes.component';
@@ -25,7 +27,10 @@ const routes: Routes = [
                 {path: 'createquizset' , component: CreatequizSetComponent, canActivate: [RouteGuardService]},
                 {path: 'solve/:id' , component: SolvequizComponent, canActivate: [RouteGuardService]},
                 {path: 'createquiz' , component: CreateQuizComponent, canActivate: [RouteGuardService]},
-
+                {path: 'quizSets', component: ViewQuizSetsComponent,canActivate: [RouteGuardService]},
+                {path: 'solveQuizSet/:id', component: SolveQuizSetComponent, canActivate: [RouteGuardService],
+                  children:[{path: 'solve/175' , component: SolvequizComponent, canActivate: [RouteGuardService]}]
+                }
               ]}
    ,
    {path: 'logout' , component: LogoutComponent},

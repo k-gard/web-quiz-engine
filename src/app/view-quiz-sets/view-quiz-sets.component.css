@@ -1,0 +1,15 @@
+#tablecontainer {
+    height: 40%;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+.table td {
+    text-align: center;
+}
+
+.table th {
+    text-align: center;
+}

@@ -22,6 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SolvedquizzesComponent } from './solvedquizzes/solvedquizzes.component';
 import { MyquizzesComponent } from './myquizzes/myquizzes.component';
 import { CreatequizSetComponent } from './createquiz-set/createquiz-set.component';
+import { SolveQuizSetComponent } from './solve-quiz-set/solve-quiz-set.component';
+import { ViewQuizSetsComponent } from './view-quiz-sets/view-quiz-sets.component';
+import { SolveQuizInQuizSetComponent } from './solve-quiz-in-quiz-set/solve-quiz-in-quiz-set.component';
 
 // const routes: Routes = [
 //   { path: 'login-component', component: LoginComponent },
@@ -44,7 +47,10 @@ import { CreatequizSetComponent } from './createquiz-set/createquiz-set.componen
     SolvedquizzesComponent,
     MyquizzesComponent,
     CreatequizSetComponent,
-    SidebarComponent
+    SidebarComponent,
+    SolveQuizSetComponent,
+    ViewQuizSetsComponent,
+    SolveQuizInQuizSetComponent
   ],
   imports: [
     BrowserModule,
@@ -57,8 +63,8 @@ import { CreatequizSetComponent } from './createquiz-set/createquiz-set.componen
   ],
 
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass:  HttpInterceptorService , multi : true}
-
+    {provide: HTTP_INTERCEPTORS, useClass:  HttpInterceptorService , multi : true},
+    SolveQuizInQuizSetComponent
   ],
   bootstrap: [AppComponent]
 })
