@@ -60,7 +60,7 @@ export class DataService {
       return this.http.delete<any>(API_URL + API_QUIZ_BY_ID + id, {observe: 'response'});
     }
 
-    createQuizSet(quizSet: QuizSet): Observable<any>{
+    createQuizSet(quizSet: any): Observable<any>{
       return this.http.post<any>(API_URL + CREATE_QUIZ_SET, quizSet);
     }
 

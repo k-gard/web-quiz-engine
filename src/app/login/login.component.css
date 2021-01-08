@@ -25,3 +25,8 @@
     font-size: 15px;
     font-weight: bold;
 } */
+
+body {
+    background-image: url("/src/assets/56933-middle.png");
+    background-color: #cccccc;
+}

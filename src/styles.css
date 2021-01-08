@@ -3,20 +3,8 @@
 html,
 body {
     height: 100%;
-}
-
-body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: #ffffff;
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: rgb(253, 183, 29);
+    background: linear-gradient(90deg, rgba(253, 183, 29, 1) 12%, rgba(252, 69, 69, 1) 100%);
 }

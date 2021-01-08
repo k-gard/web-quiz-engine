@@ -19,7 +19,9 @@ export class SolveQuizInQuizSetComponent implements OnInit {
   answered = false;
   inTime = true;
   feedback = '';
-  counter = 100;
+  counter = 200;
+  progressBarVisible = true;
+  finished = false;
   constructor(private dataservice: DataService ) {
 
    }
@@ -32,12 +34,18 @@ export class SolveQuizInQuizSetComponent implements OnInit {
   ngOnInit(): void {
     this.quiz = this.quizSet.quizzes[this.quizIndex];
     console.log(this.quizSet);
-                 this.timer();
+                this.timer();
   }
 
   nextQuiz(): void {
+    if(this.quizIndex < this.quizSet.quizzes.length){
     this.quizIndex += 1;
     this.quiz = this.quizSet.quizzes[this.quizIndex];
+    this.timer();
+    this.progressBarVisible = true;
+    }else{
+    this.finished = true;
+    }
   }
   // ngOnChanges(): void{
   // }
@@ -57,18 +65,37 @@ export class SolveQuizInQuizSetComponent implements OnInit {
 
 
    });
+   this.progressBarVisible = false;
+   this.counter=0;
+   window.setTimeout(()=>{ this.nextQuiz();
+  },2000);
+
   }
 }
 
 timer(): void{
- window.setInterval( () => {
+const timer = window.setInterval( () => {this.inTime = true;
+
    if (this.counter > 0 ){this.counter -= 1; }
    else{this.inTime = false;
-    window.setTimeout(()=>{this.nextQuiz();},1000)
-    ;} } , 100 );
+    window.clearInterval(timer);
+    this.progressBarVisible = false;
+    //this.counter = 200;
+        window.setTimeout(()=>{
+          this.counter = 200;
+
+          this.nextQuiz();
+        },2000);
+      }
+    }, 100 );
+
+  // window.setInterval( ()=>{
+  //   this.progressBarVisible = true;
+  //   this.nextQuiz()}
+  //   , 22000 );
 }
 
-//this.counter = 100;
+
 
 }
 

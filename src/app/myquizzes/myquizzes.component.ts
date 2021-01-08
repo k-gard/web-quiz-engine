@@ -25,6 +25,7 @@ export class MyquizzesComponent implements OnInit {
   displayedColumns = ['id', 'text', 'title'];
   quizId = -1;
   selectedPage =0
+  hover = false;
 
 
   ngOnInit(): void {

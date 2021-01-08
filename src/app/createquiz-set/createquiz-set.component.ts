@@ -60,10 +60,21 @@ export class CreatequizSetComponent implements OnInit {
 
   createQuizSet(): void{
 
-    //console.log(this.totalList);
+    console.log(this.totalList);
     if (this.totalList.length < 5){ this.listError = true ; return; }
-    const quizSet = new QuizSet(this.category, this.description, this.totalList);
-    this.data.createQuizSet(quizSet).subscribe((response: Response) => { console.log(response); } );
+     const quizSet = new QuizSet(this.category, this.category, this.totalList);
+    //{
+    //   category: this.category,
+    //   descrpition:this.description,
+    //   quizzes:this.totalList,
+    //   answers:
+    //};
+     console.log(quizSet);
+   // console.log("-------");
+
+     this.data.createQuizSet(quizSet).subscribe((response: Response) => {
+       console.log("response");
+       console.log(response); } );
 
   }
 

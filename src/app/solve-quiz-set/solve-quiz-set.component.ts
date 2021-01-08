@@ -15,9 +15,6 @@ import { Quiz } from '../models/quiz';
 export class SolveQuizSetComponent implements OnInit {
 
   notStarted: boolean = true;
-  currentQuiz!: Quiz;
-  counter = 110;
-  quizIndex = 0;
   timeUp = false;
 
   constructor(private componentdata: ComponentdataService,private SolveQuizInQuizSetComponent: SolveQuizInQuizSetComponent) {
@@ -34,18 +31,9 @@ export class SolveQuizSetComponent implements OnInit {
 
   start(): void{
     this.notStarted = false;
-    this.currentQuiz =this.quizSet.quizzes[this.quizIndex];
-
-
-
   }
 
-  nextQuiz(): void{
-    this.quizIndex++;
-    this.currentQuiz = this.quizSet.quizzes[this.quizIndex];
 
-
-  }
 
 
 solve(i: number): void {
@@ -54,8 +42,6 @@ solve(i: number): void {
 
 
 
-onTimeout(timeout: boolean){
-  this.nextQuiz();
-}
+
 
 }
