@@ -3,13 +3,13 @@
 
 
     <div class="container text-center  my-4">
-        <div class="alert alert-success my-4" *ngIf="created">{{QuizCreated}}</div>
+        <div class="alert alert-success my-4" *ngIf="created ;else quiz">{{QuizCreated}}</div>
 
     </div>
 
 
 
-    <div class="container">
+    <ng-template #quiz class="container">
 
 
 
@@ -168,6 +168,6 @@
             </form>
 
         </div>
-    </div>
+    </ng-template>
 
 </div>

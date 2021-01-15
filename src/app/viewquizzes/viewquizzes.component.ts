@@ -43,13 +43,10 @@ export class ViewquizzesComponent implements OnInit {
   getQuizzesPage(pageNumber: number): void{
     this.dataservice.getQuizzesPageNumber(pageNumber).subscribe(
       (response: any) => { this.list = response.content;
-                     //      console.log(this.list);
                            this.totalPages = response.totalPages;
                            this.totalElements = response.totalElements;
                            this.pages = Array(this.totalPages).fill(null).map((x, i) => i);
-
                            this.selectedPage = pageNumber;
-
                           }
     );
   }

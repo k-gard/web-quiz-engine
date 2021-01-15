@@ -10,10 +10,6 @@ a:hover {
     cursor: pointer;
 }
 
-.table td {
-    text-align: center;
-}
-
-.table th {
+.table td th {
     text-align: center;
 }

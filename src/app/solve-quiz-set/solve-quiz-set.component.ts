@@ -14,8 +14,9 @@ import { Quiz } from '../models/quiz';
 })
 export class SolveQuizSetComponent implements OnInit {
 
-  notStarted: boolean = true;
+  started: boolean = false;
   timeUp = false;
+  finished = false;
 
   constructor(private componentdata: ComponentdataService,private SolveQuizInQuizSetComponent: SolveQuizInQuizSetComponent) {
   }
@@ -30,7 +31,7 @@ export class SolveQuizSetComponent implements OnInit {
   }
 
   start(): void{
-    this.notStarted = false;
+    this.started = true;
   }
 
 
@@ -40,7 +41,11 @@ solve(i: number): void {
 
 }
 
+onFinished(finished: boolean) {
+  this.finished = finished;
+  this.started = false;
 
+}
 
 
 

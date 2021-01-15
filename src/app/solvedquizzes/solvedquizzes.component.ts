@@ -24,15 +24,11 @@ export class SolvedquizzesComponent implements OnInit {
   pages: number[] = [];
   displayedColumns = ['id', 'text', 'title'];
   quizId = -1;
-
+  selectedPage = 0;
 
 
   ngOnInit(): void {
-
-
     this.getSolvedQuizzes(0);
- //   this.getQuizzes(this.list);
-
   }
 
   getQuizzes(list: SolvedQuiz[]): void{
@@ -47,12 +43,9 @@ export class SolvedquizzesComponent implements OnInit {
   }
 
 
-
-
   getSolvedQuizzes(pageNumber: number): void{
     this.dataservice.getSolvedQuizzes(pageNumber).subscribe(
       (response: any) => { this.list = response.content;
-
                            console.log(this.list);
                            this.totalPages = response.totalPages;
                            this.pages = Array(this.totalPages).fill(null).map((x, i) => i);
@@ -60,6 +53,7 @@ export class SolvedquizzesComponent implements OnInit {
                            console.log(this.list);
                            this.getQuizzes(this.list);
                            console.log(this.list);
+                           this.selectedPage = pageNumber;
                           }
     );
 

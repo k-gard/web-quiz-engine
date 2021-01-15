@@ -14,6 +14,7 @@ export class SolveQuizInQuizSetComponent implements OnInit {
 
 
   @Input() quizSet!: QuizSet ;
+  @Output() finishedStatus = new EventEmitter<boolean>();
 
   success = false;
   answered = false;
@@ -22,7 +23,9 @@ export class SolveQuizInQuizSetComponent implements OnInit {
   counter = 200;
   progressBarVisible = true;
   finished = false;
-  constructor(private dataservice: DataService ) {
+  score: any = [];
+  timer_!: any;
+  constructor(private dataservice: DataService  ) {
 
    }
   ans1 = false;
@@ -38,17 +41,19 @@ export class SolveQuizInQuizSetComponent implements OnInit {
   }
 
   nextQuiz(): void {
-    if(this.quizIndex < this.quizSet.quizzes.length){
+    console.log(this.quizIndex);
+    if(this.quizIndex < this.quizSet.quizzes.length-1){
     this.quizIndex += 1;
     this.quiz = this.quizSet.quizzes[this.quizIndex];
     this.timer();
     this.progressBarVisible = true;
     }else{
     this.finished = true;
+    console.log(this.score);
+    this.finishedStatus.emit(true);
     }
   }
-  // ngOnChanges(): void{
-  // }
+
 
   answerQuiz(): void{
    const answer = [];
@@ -56,45 +61,47 @@ export class SolveQuizInQuizSetComponent implements OnInit {
    if (this.ans2 === true){answer.push(1); }
    if (this.ans3 === true){answer.push(2); }
    if (this.ans4 === true){answer.push(3); }
-   console.log(answer);
    this.answered = true;
    if(this.quiz.id !== undefined){
    this.dataservice.solveQuiz(this.quiz.id, answer).subscribe(response => {console.log(response);
-                                                                      this.success = response.success;
-                                                                      this.feedback = response.feedback;
-
+                                                                           this.success = response.success;
+                                                                            if(this.success === true){
+                                                                            this.score[this.quizIndex] = 1;}
+                                                                            else{this.score[this.quizIndex] = 0;}
+                                                                           this.feedback = response.feedback;
 
    });
    this.progressBarVisible = false;
-   this.counter=0;
-   window.setTimeout(()=>{ this.nextQuiz();
-  },2000);
-
+   window.clearInterval(this.timer_);
+   this.ans1 = false;
+   this.ans2 = false;
+   this.ans3 = false;
+   this.ans4 = false;
+   window.setTimeout(()=>{
+    this.counter = 200;
+    this.nextQuiz();
+  },500);
   }
+
 }
 
 timer(): void{
-const timer = window.setInterval( () => {this.inTime = true;
-
+this.timer_ = window.setInterval( () => {this.inTime = true;
    if (this.counter > 0 ){this.counter -= 1; }
    else{this.inTime = false;
-    window.clearInterval(timer);
+    window.clearInterval(this.timer_);
     this.progressBarVisible = false;
-    //this.counter = 200;
         window.setTimeout(()=>{
           this.counter = 200;
-
           this.nextQuiz();
-        },2000);
+        },500);
       }
     }, 100 );
-
-  // window.setInterval( ()=>{
-  //   this.progressBarVisible = true;
-  //   this.nextQuiz()}
-  //   , 22000 );
 }
 
+onFinished(finished: boolean) {
+  this.finished = finished;
+}
 
 
 }

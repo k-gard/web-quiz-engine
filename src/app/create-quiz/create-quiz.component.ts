@@ -91,8 +91,8 @@ postQuiz(postQuiz: any): any {
   }
 
   this.dataservice.createquiz(postQuiz).subscribe(
-      (response: Response) => {this.created = true,
-                               this.reloadComponent(),
+      (response: Response) => {this.created = true;
+
                                this.title = '';
                                this.text = '';
                                this.opt1 = '';
@@ -102,7 +102,8 @@ postQuiz(postQuiz: any): any {
                                this.ans1 = false;
                                this.ans2 = false;
                                this.ans3 = false;
-                               this.ans4 = false; },
+                               this.ans4 = false;
+                               window.setTimeout(()=>{this.reloadComponent()}, 5000);},
       (error: Error) => {console.log(error.message); }
       );
   }
@@ -113,7 +114,9 @@ postQuiz(postQuiz: any): any {
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
         this.router.navigate([currentUrl]);
+        this.created = true;
     }
+
 }
 
 

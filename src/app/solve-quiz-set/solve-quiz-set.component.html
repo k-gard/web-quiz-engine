@@ -13,18 +13,23 @@
                     </div>
                 </div>
 
-                <div>
-                    <button *ngIf="notStarted; else started" class="btn btn-sm btn-primary" (click)="start()">click to start</button>
+                <div class="text-center">
+                    <button *ngIf="!started&&!finished" class="btn btn-sm btn-primary" (click)="start()">click to start</button>
+                </div>
+
+
+
+
+                <div class="container" *ngIf="started">
+                    <app-solve-quiz-in-quiz-set (finishedStatus)="onFinished($event)" class="my-5" [quizSet]="quizSet"></app-solve-quiz-in-quiz-set>
+                </div>
+
+
+
+                <div *ngIf='finished'>
+                    It works
                 </div>
             </div>
         </div>
-
-        <ng-template #started>
-
-
-            <div class="container">
-                <app-solve-quiz-in-quiz-set class="my-5" [quizSet]="quizSet"></app-solve-quiz-in-quiz-set>
-            </div>
-        </ng-template>
     </div>
 </div>
