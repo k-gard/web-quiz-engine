@@ -17,6 +17,8 @@ export class SolveQuizSetComponent implements OnInit {
   started: boolean = false;
   timeUp = false;
   finished = false;
+  score = 0;
+  success = false;
 
   constructor(private componentdata: ComponentdataService,private SolveQuizInQuizSetComponent: SolveQuizInQuizSetComponent) {
   }
@@ -24,10 +26,8 @@ export class SolveQuizSetComponent implements OnInit {
   quizSet!: QuizSet;
 
   ngOnInit(): void {
-    this.componentdata.currentQuizSet.subscribe(quizSet =>{if (quizSet != undefined) {this.quizSet = quizSet
-                                                                                       }});
-
-
+    this.componentdata.currentQuizSet.subscribe(
+      quizSet =>{if (quizSet != undefined) {this.quizSet = quizSet}});
   }
 
   start(): void{
@@ -41,10 +41,15 @@ solve(i: number): void {
 
 }
 
-onFinished(finished: boolean) {
-  this.finished = finished;
+onFinished(score: number) {
+  this.finished = true;
   this.started = false;
-
+  this.score = score;
+  if (score > this.quizSet.quizzes.length/2){
+    this.success = true;
+  }else{
+    this.success = false;
+  }
 }
 
 

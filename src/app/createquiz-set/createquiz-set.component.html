@@ -2,9 +2,9 @@
     <h4>Create a quiz Set</h4>
 </div>
 <div class='row'>
-    <div class='col-8 mx-auto '>
+    <div class='col-8 mx-auto ' *ngIf="!created ; else createdQuizSet">
 
-        <form class=" p-3">
+        <form class=" p-3"  >
             <div class="form-row my-3">
 
 
@@ -50,9 +50,6 @@
 
             </div>
 
-
-
-            <!-- </div> -->
         </div>
 
 
@@ -63,17 +60,19 @@
             </div>
         </div>
     </div>
+    <ng-template #createdQuizSet>
+    <div  class = "col-8 mx-auto">
+      <div class="alert alert-success text-center" role="alert">
+        Quiz set created
+      </div>
+    </div>
+    </ng-template>
 
 
 
 
     <div class=" col-2 my-5">
         <div class="fixed " *ngIf="totalList.length>0">
-            <!-- <ng-container *ngIf="total_list.length>0">
-            <ul>
-                <li *ngFor='let item of total_list'>{{item.title}}</li>
-            </ul>
-        </ng-container> -->
 
             <table class=" table table-sm table-hover">
                 <thead class="thead-dark">

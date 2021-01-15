@@ -31,9 +31,10 @@ export class CreatequizSetComponent implements OnInit {
   totalList: Quiz[] = [];
   selectedIndexes: number[] = [];
   listError = false;
+  created = false;
 
   ngOnInit(): void {
-
+    this.created = false;
     this.formGroup = new FormGroup( {description: new FormControl(this.description, Validators.required),
                                      category: new FormControl(this.category, Validators.required)});
 
@@ -44,8 +45,8 @@ export class CreatequizSetComponent implements OnInit {
 
     this.componentData.currentQuiz.subscribe(quiz => {if (quiz !== null){console.log(quiz),
       this.createList.push(quiz),
-                                                                         this.totalList = this.existingList.concat(this.createList);
-                                                                         this.updateTotalList();
+      //this.totalList = this.existingList.concat(this.createList);
+      this.updateTotalList();
     }});
 
     this.componentData.currentSelectedIndexes.subscribe(selectedIndexes => this.selectedIndexes = selectedIndexes);
@@ -63,18 +64,19 @@ export class CreatequizSetComponent implements OnInit {
     console.log(this.totalList);
     if (this.totalList.length < 5){ this.listError = true ; return; }
      const quizSet = new QuizSet(this.category, this.category, this.totalList);
-    //{
-    //   category: this.category,
-    //   descrpition:this.description,
-    //   quizzes:this.totalList,
-    //   answers:
-    //};
+
      console.log(quizSet);
-   // console.log("-------");
+
 
      this.data.createQuizSet(quizSet).subscribe((response: Response) => {
-       console.log("response");
-       console.log(response); } );
+      console.log("response");
+      console.log(response);
+      this.componentData.changeList(new Array());
+      this.componentData.changeQuiz(null);
+      this.created = true;
+
+
+      } );
 
   }
 

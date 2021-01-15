@@ -37,7 +37,7 @@
     <div class="container my-5" *ngIf="list.length > 0">
         <nav aria-label="Page navigation example">
             <ul id='pagination' class="pagination">
-                <li #pagebutton [value]='num' [ngClass]="['page-item',(pagebutton.value == selectedPage)? 'active':'','text-dark']" *ngFor="let num of pages"><a class="page-link" (click)="getQuizzesPage(num)">{{num + 1}}</a></li>
+                <li #pagebutton [value]='num' [ngClass]="['page-item',(pagebutton.value == selectedPage)? 'active':'','text-dark']" *ngFor="let num of pages"><a class="page-link" (click)="getSolvedQuizzes(num)">{{num + 1}}</a></li>
 
             </ul>
         </nav>

@@ -10,11 +10,13 @@ import { QuizSet } from '../models/quizSet';
   templateUrl: './solve-quiz-in-quiz-set.component.html',
   styleUrls: ['./solve-quiz-in-quiz-set.component.css']
 })
+
+
 export class SolveQuizInQuizSetComponent implements OnInit {
 
 
   @Input() quizSet!: QuizSet ;
-  @Output() finishedStatus = new EventEmitter<boolean>();
+  @Output() finishedStatus = new EventEmitter<number>();
 
   success = false;
   answered = false;
@@ -50,7 +52,7 @@ export class SolveQuizInQuizSetComponent implements OnInit {
     }else{
     this.finished = true;
     console.log(this.score);
-    this.finishedStatus.emit(true);
+    this.finishedStatus.emit(this.calculateScore());
     }
   }
 
@@ -99,8 +101,13 @@ this.timer_ = window.setInterval( () => {this.inTime = true;
     }, 100 );
 }
 
-onFinished(finished: boolean) {
-  this.finished = finished;
+calculateScore(): number{
+  let totalScore = 0;
+  this.score.forEach((x: any) => {
+    totalScore += x;
+  });
+  return totalScore;
+
 }
 
 
